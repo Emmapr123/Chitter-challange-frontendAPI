@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, ScrollView, StyleSheet, Text, TextInput, View, Dimensions, KeyboardAvoidingView } from 'react-native';
 import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
 
 const SignUpScreen = ({navigation}) => {
 
@@ -15,7 +16,7 @@ const SignUpScreen = ({navigation}) => {
     {"user": {"handle": userName, "password": password}})
     const {data} = await axios.post("https://chitter-backend-api-v2.herokuapp.com/sessions",
     {"session": {"handle": userName, "password": password}})
-    navigation.navigate('Posts', data)
+    navigation.navigate('Home', data)
     .catch((error) => {
       console.log('error', error)
     })

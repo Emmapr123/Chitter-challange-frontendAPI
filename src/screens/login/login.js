@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Button, ScrollView, StyleSheet, Text, TextInput, View, Dimensions, KeyboardAvoidingView } from 'react-native';
 import axios from 'axios';
 
-const LogInScreen = () => {
+const LogInScreen = (props, { navigation, route }) => {
 
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
 
-  const LogInUser = () => {
-    axios.post("https://chitter-backend-api-v2.herokuapp.com/sessions", 
-      {"session": {"handle": userName, "password": password }})
+  const LogInUser = async() => {
+      const {data} = await axios.post("https://chitter-backend-api-v2.herokuapp.com/sessions",
+    {"session": {"handle": userName, "password": password}})
+    .then(props.navigation.navigate('Home', data))
+    .then(alert(`Welcome back ${userName} !`))
+    .catch((error) => console.error(error));
   };
 
   return(

@@ -4,32 +4,30 @@ import "react-native-gesture-handler";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import { SignUpScreen, LogInScreen } from './src/screens';
+import { SignUpScreen, LogInScreen, PostScreen } from './src/screens';
 
 const Stack = createStackNavigator();
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={SignUpScreen}
-          options={{ title: "Sign Up" }}
-        />
-        <Stack.Screen
-        name='Log In'
-        component={LogInScreen}
-        options={{title: 'Log In'}}
-        />
-     </Stack.Navigator>
-    </NavigationContainer>
-  );
+class App extends React.Component {
+  
+  render() {
+
+    return (
+      <NavigationContainer>
+        <Stack.Navigator>
+        <Stack.Screen name="Sign up">
+              {props => <SignUpScreen {...props}/>}
+            </Stack.Screen>
+          <Stack.Screen name='Log In'>
+              {props => <LogInScreen {...props}/>}
+          </Stack.Screen>
+          <Stack.Screen name='Home'>
+            {props => <PostScreen {...props}/>}
+          </Stack.Screen>
+      </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
+export default App;

@@ -22,6 +22,9 @@ class App extends React.Component {
           <Stack.Screen name='Home'>
             {props => <PostScreen {...props}/>}
           </Stack.Screen>
+          {/* <Stack.Screen name='New Post'>
+            {props => <NewPeepScreen {...props}/>}
+          </Stack.Screen> */}
       </Stack.Navigator>
       </NavigationContainer>
     );

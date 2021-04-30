@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button, ScrollView, StyleSheet, Text, TextInput, View, Dimensions, KeyboardAvoidingView } from 'react-native';
-import axios from 'axios';
-import { useNavigation } from '@react-navigation/native';
+import { addHeader, instance } from '../../axios/axios';
 
 const SignUpScreen = ({navigation}) => {
 
@@ -12,11 +11,13 @@ const SignUpScreen = ({navigation}) => {
   const [password, setPassword] = useState('')
 
   const createNewUser = async() => {
-    await axios.post("https://chitter-backend-api-v2.herokuapp.com/users" , 
+    await instance.post("/users" , 
     {"user": {"handle": userName, "password": password}})
-    const {data} = await axios.post("https://chitter-backend-api-v2.herokuapp.com/sessions",
+    const {data} = await instance.post("/sessions",
     {"session": {"handle": userName, "password": password}})
+    addHeader(data.session_key)
     navigation.navigate('Home', data)
+    alert(`Welcome to chitter ${userName} !`)
     .catch((error) => {
       console.log('error', error)
     })

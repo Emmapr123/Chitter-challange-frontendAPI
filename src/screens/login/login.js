@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Button, ScrollView, StyleSheet, Text, TextInput, View, Dimensions, KeyboardAvoidingView } from 'react-native';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { addHeader, instance } from '../../axios/axios';
 
-const LogInScreen = (props, { navigation, route }) => {
+const LogInScreen = (props, { route }) => {
 
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
 
   const LogInUser = async() => {
-      const {data} = await axios.post("https://chitter-backend-api-v2.herokuapp.com/sessions",
+      const {data} = await instance.post("/sessions",
     {"session": {"handle": userName, "password": password}})
-    .then(props.navigation.navigate('Home', data))
-    .then(alert(`Welcome back ${userName} !`))
-    .catch((error) => console.error(error));
+    addHeader(data.session_key)
+    props.navigation.navigate('Home', data)
+    alert(`Welcome back ${userName} !`)
   };
 
   return(

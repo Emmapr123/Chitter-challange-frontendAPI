@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Button, ScrollView, StyleSheet, Text, TextInput, View, Dimensions, KeyboardAvoidingView } from 'react-native';
-import axios from 'axios';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import dayjs from 'dayjs';
 
 const PostsComponent = ({ 
@@ -9,17 +8,14 @@ const PostsComponent = ({
   user
 }) => {
 
-  const CreateNewPost = async() => {
-    axios.post("https://chitter-backend-api-v2.herokuapp.com/peeps")
-  }
-
+  const username = user.handle
   const timeStamp = dayjs(created_at).format("DD/MM")
 
   return(
     <View>
       <View style={styles.peepBox}>
         <View style={styles.handleBar}>
-          <Text style={styles.handle} >{user.handle}</Text>
+          <Text style={styles.handle}>{username}</Text>
           <Text style={styles.timestamp}>{timeStamp}</Text>
         </View>
         <Text style={styles.peepBody} >{body}</Text>

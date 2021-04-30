@@ -2,15 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Button, ScrollView, StyleSheet, Text, TextInput, View, Dimensions, KeyboardAvoidingView } from 'react-native';
 import axios from 'axios';
 import { PostsComponent, NewPostComponent } from '../../components/index';
-import { useNavigation } from '@react-navigation/native';
 
-const PostList = (props) => {
+const PostList = ( props ) => {
   const {posts = []} = props
+
   return posts.map((post) => <PostsComponent key={post.id} {...post} />)
 }
 
-const PostScreen = (props, { route }) => {
-  const navigation = useNavigation();
+const PostScreen = (props) => {
 
   const [posts, setPosts] = useState([])
 
@@ -26,7 +25,7 @@ const PostScreen = (props, { route }) => {
 
   return(
     <ScrollView style={{flex: 1}}>
-      <NewPostComponent/>
+      <NewPostComponent {...props} {...{getPosts}}/>
       <PostList posts={posts}/>
     </ScrollView>
   )

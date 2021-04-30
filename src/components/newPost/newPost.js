@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Button, ScrollView, StyleSheet, Text, TextInput, View, Dimensions, KeyboardAvoidingView } from 'react-native';
-import axios from 'axios';
+import { instance } from '../../axios/axios';
 
-const NewPostComponent = () => {
+const NewPostComponent = (props) => {
 
   const [postBody, setPostBody] = useState('')
+
+  const CreateNewPost = async() => {
+    instance.post("/peeps", 
+    {"peep": {"user_id": props.route.params.user_id, "body": postBody}}
+    )
+    .then(() => props.getPosts())
+    .catch((error) => {
+      console.log(error)
+    })
+  }
 
   return(
     <View>
@@ -15,7 +25,7 @@ const NewPostComponent = () => {
       value={postBody}
       />
       <View style={styles.peepButton}>
-        <Button title="Peep"/>
+        <Button title="Peep" onPress={CreateNewPost}/>
       </View>
     </View>
   )

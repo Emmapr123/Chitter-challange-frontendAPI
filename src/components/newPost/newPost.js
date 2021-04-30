@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Button, ScrollView, StyleSheet, Text, TextInput, View, Dimensions, KeyboardAvoidingView } from 'react-native';
+import React, { useState} from 'react';
+import { Button, StyleSheet, TextInput, View } from 'react-native';
 import { instance } from '../../axios/axios';
 
 const NewPostComponent = (props) => {

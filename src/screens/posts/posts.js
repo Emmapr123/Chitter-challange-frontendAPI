@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, ScrollView, StyleSheet, Text, TextInput, View, Dimensions, KeyboardAvoidingView } from 'react-native';
+import { ScrollView } from 'react-native';
 import axios from 'axios';
 import { PostsComponent, NewPostComponent } from '../../components/index';
 

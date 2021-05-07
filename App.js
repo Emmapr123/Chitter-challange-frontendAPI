@@ -12,7 +12,7 @@ class App extends React.Component {
 
     return (
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{headerTintColor: 'white', headerStyle: {backgroundColor: '#179aff'}}}>
         <Stack.Screen name="Sign up">
               {props => <SignUpScreen {...props}/>}
             </Stack.Screen>
@@ -22,9 +22,6 @@ class App extends React.Component {
           <Stack.Screen name='Home'>
             {props => <PostScreen {...props}/>}
           </Stack.Screen>
-          {/* <Stack.Screen name='New Post'>
-            {props => <NewPeepScreen {...props}/>}
-          </Stack.Screen> */}
       </Stack.Navigator>
       </NavigationContainer>
     );

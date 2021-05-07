@@ -17,7 +17,6 @@ const SignUpScreen = ({navigation}) => {
     {"session": {"handle": userName, "password": password}})
     addHeader(data.session_key)
     navigation.navigate('Home', data)
-    alert(`Welcome to chitter ${userName} !`)
     .catch((error) => {
       console.log('error', error)
     })
@@ -58,9 +57,10 @@ const SignUpScreen = ({navigation}) => {
         value={password}
         />
         <Button style={styles.button} title='Sign Up' onPress={() => createNewUser()}/>
+        <View style={styles.logIn}>
         <Text>Do you already have an account?</Text>
         <Text onPress={() => navigation.navigate('Log In')}>Log In</Text>
-        </View>
+        </View></View>
       </ScrollView>
     </KeyboardAvoidingView>
   )
@@ -81,15 +81,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'black',
     backgroundColor: 'white',
-    width: 200,
-    alignItems: 'center',
+    marginBottom: 16,
   },
   signUpSheet: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
     marginTop: Dimensions.get('window').height*0.2,
+    marginLeft: Dimensions.get('window').width*0.1,
+    marginRight: Dimensions.get('window').width*0.1,
   },
+  logIn: {
+    alignItems: 'center'
+  }
 });
 
 export { SignUpScreen }

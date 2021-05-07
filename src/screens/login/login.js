@@ -12,7 +12,6 @@ const LogInScreen = (props, { route }) => {
     {"session": {"handle": userName, "password": password}})
     addHeader(data.session_key)
     props.navigation.navigate('Home', data)
-    alert(`Welcome back ${userName} !`)
   };
 
   return(

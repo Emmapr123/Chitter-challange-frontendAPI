@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import dayjs from 'dayjs';
 import { DeleteButton, LoveButton } from '../../Buttons';
@@ -17,8 +17,6 @@ const PostsComponent = ({
   const username = user.handle
   const timeStamp = dayjs(created_at).format("DD/MM")
   const loved = !!likes.filter((like) => like.user.id === myId)[0]
-
-  console.log(loved)
 
   const deletePeep = async() => {
     await instance.delete(`/peeps/${id}`)

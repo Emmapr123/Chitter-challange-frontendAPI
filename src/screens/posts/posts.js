@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, View, StyleSheet, Modal, Text, TouchableOpacity, SafeAreaView } from 'react-native';
 import { instance } from '../../axios/axios';
-import { PostsComponent, NewPostComponent } from '../../components/index';
+import { PostList, NewPostComponent } from '../../components/index';
 import { NewPeepButton } from '../../Buttons'
-
-const PostList = ( props ) => {
-  const {posts = [], getPosts, route} = props
-
-  return posts.map((post) => <PostsComponent key={post.id} {...post} {...{getPosts}} myId={route.params.user_id}/>)
-}
 
 const PostScreen = (props) => {
 
@@ -26,7 +20,7 @@ const PostScreen = (props) => {
   }, [])
 
   return(
-    <View style={{flex: 1, position: 'relative'}}>
+    <View style={{flex: 1, position: 'relative'}}> 
     <ScrollView >
       <PostList posts={posts} {...{getPosts}} {...props}/>
     </ScrollView>
